@@ -29,6 +29,7 @@
                       id="name"
                       class="form-control"
                       v-model="permission.name"
+                      required
                     />
                   </div>
                 </div>

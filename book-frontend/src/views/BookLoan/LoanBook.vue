@@ -40,6 +40,7 @@
                       id="due_date"
                       class="form-control"
                       v-model="bookLoan.due_date"
+                      required
                     />
                   </div>
                 </div>

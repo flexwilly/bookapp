@@ -15,6 +15,7 @@
                     class="form-control"
                     placeholder="Enter Email"
                     v-model="user.email"
+                    required
                   />
                 </div>
                 <div class=" mb-3">
@@ -25,6 +26,7 @@
                     class="form-control"
                     placeholder="Enter Password"
                     v-model="user.password"
+                    required
                   />
                 </div>
                 <div class="mb-3">

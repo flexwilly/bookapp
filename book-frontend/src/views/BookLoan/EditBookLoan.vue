@@ -28,6 +28,7 @@
                       class="form-select"
                       aria-label="Default select example"
                       v-model="bookLoan.extended"
+                      required
                     >
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
@@ -47,6 +48,7 @@
                       id="due_date"
                       class="form-control"
                       v-model="bookLoan.extension_date"
+                      required
                     />
                   </div>
                 </div>

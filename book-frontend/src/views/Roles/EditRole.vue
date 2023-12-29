@@ -27,6 +27,7 @@
                       id="name"
                       class="form-control"
                       v-model="role.name"
+                      required
                     />
                   </div>
                 </div>
@@ -45,6 +46,7 @@
                       name="permissions[]"
                       style="height: 210px;"
                       v-model="role.permissions"
+                      required
                     >
                       <option
                         v-for="perm in rolePermissions"

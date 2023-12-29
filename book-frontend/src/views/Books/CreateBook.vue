@@ -76,6 +76,7 @@
                       class="form-select"
                       aria-label="Default select example"
                       v-model="book.category"
+                      required
                     >
                       <option selected>Open this select menu</option>
                       <option value="Fiction">Fiction</option>
@@ -96,6 +97,7 @@
                       class="form-select"
                       aria-label="Default select example"
                       v-model="book.subcategory"
+                      required
                     >
                       <option selected>Open this select menu</option>
                       <option value="Comedy">Comedy</option>
@@ -116,6 +118,7 @@
                       class="form-control"
                       rows="5"
                       v-model="book.description"
+                      required
                     ></textarea>
                   </div>
                 </div>
@@ -150,6 +153,7 @@
                       id="formFile"
                       accept="image/*"
                       name="image"
+                      required
                       v-on:change="onFileChange"
                     />
                   </div>
