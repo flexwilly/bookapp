@@ -15,6 +15,11 @@
               </div>
             </div>
             <div class="card-body">
+              <div class="row mb-3">
+                <p class="float-start">
+                  Your current due date is : {{ previousVals.due_date }}
+                </p>
+              </div>
               <form @submit.prevent="updateLoan">
                 <div class="row mb-3">
                   <label
@@ -44,6 +49,7 @@
                   <div class="col-md-6">
                     <input
                       type="date"
+                      :min="previousVals.due_date"
                       name="extension_date"
                       id="due_date"
                       class="form-control"
@@ -71,28 +77,47 @@ export default{
         name:"EditBookLoan",
         data(){
                 return {
+                        previousVals:{},
                         bookLoan:{
                           extended:null,
-                          due_date:null,
                           return_date:null,
                           extension_date:null,
                         }
           }
-       },methods:{
-          async updateLoan(){
-            let extdate = this.extension_date;
-            this.due_date = extdate;
-            this.return_date = extdate;
-           await axios.put("http://127.0.0.1:8000/api/bookLoans/"+this.$route.params.id,this.bookLoan,{ headers: {"Authorization" :`Bearer ${localStorage.getItem("token")}`}}).then((response)=>{
+       },
+       methods:{
+           updateLoan(){
+            let extdate = this.bookLoan.extension_date;
+            this.bookLoan.return_date = extdate;
+            console.log(this.bookLoan);
+            axios.put("http://127.0.0.1:8000/api/bookLoans/"+this.$route.params.id,this.bookLoan,{ headers: {"Authorization" :`Bearer ${localStorage.getItem("token")}`}}).then((response)=>{
                     if(response.data.status === true){
                       alert(response.data.message);
+                      this.$router.push({name:'ViewBookLoans'});
                     }else{
                       alert(response.data.message);
                     }
             }).catch((error)=>alert(error.message))
            },
+           async getLoanData(){
+            await axios.get("http://127.0.0.1:8000/api/bookLoans/"+this.$route.params.id,{headers: {"Authorization" :`Bearer ${localStorage.getItem("token")}`}}).then((response)=>{
+                if(response.data.status  === true){
+                 // console.log(response.data.bookloan)
+                  this.previousVals = response.data.bookloan;
+                  //console.log(this.previousVals);
+                }
+
+               }).catch((error)=>{
+                alert(error.message);
+               });
+
+           }
 
        },
+        mounted(){
+               this.getLoanData();
+           }
+
 
 }
 </script>

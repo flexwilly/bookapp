@@ -36,6 +36,7 @@
                   <div class="col-md-6">
                     <input
                       type="date"
+                      :min="bookLoan.loan_date"
                       name="due_date"
                       id="due_date"
                       class="form-control"
@@ -126,9 +127,6 @@ export default{
                 setValues(){
 
                    this.bookLoan.loan_date = this.formatDate(new Date());
-                   let defaultdate = this.bookLoan.loan_date;
-                   //console.log(this.bookLoan.loan_date);
-
                    this.bookLoan.extended = "No";
                    this.bookLoan.extension_date =" ";
                    this.bookLoan.penalty_amount = "0";

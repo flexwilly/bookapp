@@ -22,7 +22,7 @@
                   <th scope="col">Loan date</th>
                   <th scope="col">Due Date</th>
                   <th scope="col">Return Date</th>
-                  <th scope="col">Penalty Amount</th>
+                  <th scope="col">Extended</th>
                   <th scope="col">#</th>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                     <td>{{ book.loan_date }}</td>
                     <td>{{ book.due_date }}</td>
                     <td>{{ book.return_date }}</td>
-                    <td>{{ book.penalty_amount }}</td>
+                    <td>{{ book.extended }}</td>
                     <td>
                       <router-link
                         class="btn btn-success btn-sm"
@@ -62,7 +62,7 @@ export default{
         },methods:{
            async getBookLoans(){
                 await axios.get("http://127.0.0.1:8000/api/bookLoans",{headers: {"Authorization" :`Bearer ${localStorage.getItem("token")}`}}).then((response)=>{
-                        console.log(response.data);
+                       // console.log(response.data);
                         this.bookLoans = response.data.books;
                 }).catch((error)=>{
                     alert(error.message);

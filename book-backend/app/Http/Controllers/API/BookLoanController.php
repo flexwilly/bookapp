@@ -25,7 +25,7 @@ class BookLoanController extends Controller
         //
        $id = auth()->user()->id;
 
-       $bookLoans = DB::table('books')->join('book_loans','books.id','=','book_loans.book_id')->select('books.name','book_loans.*')->where('book_loans.user_id',$id)->get();
+       $bookLoans = DB::table('books')->join('book_loans','books.id','=','book_loans.book_id')->select('books.name','book_loans.*')->where('book_loans.user_id',$id)->latest()->get();
         return response()->json([
             'status'=>true,
             'books'=>$bookLoans,
@@ -70,10 +70,10 @@ class BookLoanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(String $id)
+    public function show(BookLoan $bookLoan)
     {
         //
-        $bookLoan = DB::table('books')->join('book_loans','books.id','=','book_loans.book_id')->select('books.name','book_loans.*')->where('book_loans.id',$id)->get();
+
         $response = [
             'status'=>true,
             'bookloan'=>$bookLoan
